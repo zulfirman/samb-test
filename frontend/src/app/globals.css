@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	html {
+		@apply overflow-x-hidden;
+	}
+}
+
+:root {
+	--color-primary-500: rgba(202, 31, 65);
+	--color-primary-700: rgba(165, 25, 52);
+	--color-primary-900: rgba(121, 19, 39);
+	--color-dark-grey-500: rgba(77, 77, 77);
+	--color-dark-grey-300: #bbbbbb;
+	--color-dark-grey-900: rgba(28, 28, 28);
+	--color-blue-grey-50: rgba(250, 250, 252);
+	--color-blue-grey-100: rgba(246, 247, 251);
+	--color-blue-grey-300: rgba(237, 239, 246);
+	--color-blue-grey-500: rgba(227, 232, 239);
+	--color-blue-grey-700: rgba(218, 223, 236);
+	--color-blue-grey-900: rgba(163, 174, 208);
+
+	--sidebar-xl: 290px;
+	--sidebar-sm: 84px;
+	--header-height: 92px;
+}
+
+@media (-webkit-device-pixel-ratio: 1.25) {
+	html {
+		zoom: 0.8;
+	}
+}
+
+body {
+	/* width: 100vw; */
+	/* height: 100vh; */
+	font-weight: 500;
+	background-color: var(--color-blue-grey-50);
+}

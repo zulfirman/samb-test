@@ -1,0 +1,140 @@
+openapi: 3.0.0
+info:
+  title: SAMB Test
+  version: 1.0.0
+servers:
+  - url: /
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+paths:
+  /main/v1/supplier:
+    get:
+      tags:
+        - General
+      summary: Get All Supplier
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /main/v1/product:
+    get:
+      tags:
+        - General
+      summary: Get All Product
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /main/v1/signin:
+    post:
+      tags:
+        - General
+      summary: SignIn
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                email: zul@gmail.com
+                password: superadmin
+                timeoutDuration: 100000
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /main/v1/warehouse:
+    get:
+      tags:
+        - General
+      summary: Get All Warehouse
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /main/v1/goods-receipt:
+    post:
+      tags:
+        - General
+      summary: Save Goods Receipt Data
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                header:
+                  notes: testing
+                  trxDate: '2025-01-31'
+                  warehouseID: 2
+                  supplierID: 3
+                goodsList:
+                  - produtID: 3
+                    boxQty: 5
+                    pcs: 5
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /main/v1/goods-release:
+    post:
+      tags:
+        - General
+      summary: Save Goods Release Data
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                header:
+                  trxOutNo: '1134'
+                  notes: testing
+                  trxDate: '2025-01-31'
+                  warehouseID: 2
+                  supplierID: 3
+                goodsList:
+                  - produtID: 3
+                    boxQty: 1
+                    pcs: 1
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /main/v1/product-stock:
+    get:
+      tags:
+        - General
+      summary: Get All Product Stock
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: warehouseID
+          in: query
+          schema:
+            type: integer
+          example: '2'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}

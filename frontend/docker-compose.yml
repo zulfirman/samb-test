@@ -1,0 +1,11 @@
+version: "3"
+
+services:
+    samb-test-frontend:
+        build:
+            context: "."
+        environment:
+            NEXT_PUBLIC_ENV_NODE: development
+            NEXT_PUBLIC_MAIN_SERVICE: http://localhost:8081/main/v1
+        ports:
+            - "9003:3000"

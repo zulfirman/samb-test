@@ -1,0 +1,237 @@
+{
+	"info": {
+		"_postman_id": "55a40dbb-c34a-4abf-82af-008e0be16905",
+		"name": "SAMB Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22246763",
+		"_collection_link": "https://martian-eclipse-946651.postman.co/workspace/Local-Workspaces~14ed108b-178c-4968-8542-319c73a84744/collection/22246763-55a40dbb-c34a-4abf-82af-008e0be16905?action=share&source=collection_link&creator=22246763"
+	},
+	"item": [
+		{
+			"name": "Get All Supplier",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/main/v1/supplier",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"main",
+						"v1",
+						"supplier"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Product",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/main/v1/product",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"main",
+						"v1",
+						"product"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SignIn",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"zul@gmail.com\",\r\n    \"password\": \"superadmin\",\r\n    \"timeoutDuration\": 100000\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/main/v1/signin",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"main",
+						"v1",
+						"signin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Warehouse",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/main/v1/warehouse",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"main",
+						"v1",
+						"warehouse"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Save Goods Receipt Data",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"header\": {\r\n        \"notes\": \"testing\",\r\n        \"trxDate\": \"2025-01-31\",\r\n        \"warehouseID\": 2,\r\n        \"supplierID\": 3\r\n    },\r\n    \"goodsList\": [\r\n        {\r\n            \"produtID\": 3,\r\n            \"boxQty\": 5,\r\n            \"pcs\": 5\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/main/v1/goods-receipt",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"main",
+						"v1",
+						"goods-receipt"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Save Goods Release Data",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"header\": {\r\n        \"trxOutNo\": \"1134\",\r\n        \"notes\": \"testing\",\r\n        \"trxDate\": \"2025-01-31\",\r\n        \"warehouseID\": 2,\r\n        \"supplierID\": 3\r\n    },\r\n    \"goodsList\": [\r\n        {\r\n            \"produtID\": 3,\r\n            \"boxQty\": 1,\r\n            \"pcs\": 1\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/main/v1/goods-release",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"main",
+						"v1",
+						"goods-release"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Product Stock",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/main/v1/product-stock?warehouseID=2",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"main",
+						"v1",
+						"product-stock"
+					],
+					"query": [
+						{
+							"key": "warehouseID",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

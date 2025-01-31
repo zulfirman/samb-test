@@ -1,0 +1,82 @@
+services:
+  main:
+    container_name: ${COMPOSE_PROJECT_NAME}-main
+    build:
+      context: .
+    restart: always
+    env_file: docker/environment/.env-dev
+    networks:
+      - net
+    depends_on:
+      - postgres
+      - redis
+    volumes:
+      - ./uploads:/app/uploads
+
+  nginx:
+    container_name: ${COMPOSE_PROJECT_NAME}-nginx
+    image: nginx:stable-alpine
+    restart: always
+    env_file: docker/environment/.env-dev
+    networks:
+      - net
+    volumes:
+      - ./docker/nginx/nginx-dev.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - main
+    ports:
+      - "6001:80"
+
+  postgres:
+    container_name: ${COMPOSE_PROJECT_NAME}-postgres
+    build:
+      context: .
+      dockerfile: docker/postgres-master/Dockerfile
+    restart: always
+    env_file: docker/environment/.env-dev
+    environment:
+      - POSTGRESQL_REPLICATION_MODE=master
+    networks:
+      - net
+    ports:
+      - "5310:5432"
+    volumes:
+      - postgres-vol:/var/lib/postgresql/data
+
+  postgres-slave:
+    container_name: ${COMPOSE_PROJECT_NAME}-postgres-slave
+    build:
+      context: .
+      dockerfile: docker/postgres-slave/Dockerfile
+    restart: always
+    depends_on:
+      - postgres
+    env_file: docker/environment/.env-dev
+    environment:
+      - POSTGRESQL_REPLICATION_MODE=slave
+      - PG_MASTER_HOST=${HOST_DB}
+      - PG_MASTER_PORT=${PORT_DB}
+    networks:
+      - net
+    volumes:
+      - postgres-slave-vol:/var/lib/postgresql/data
+
+  redis:
+    image: redis:alpine
+    container_name: ${COMPOSE_PROJECT_NAME}-redis
+    restart: always
+    env_file: docker/environment/.env-dev
+    command: --requirepass ${REDIS_PASSWORD}
+    networks:
+      - net
+
+volumes:
+  postgres-vol:
+    name: ${COMPOSE_PROJECT_NAME}-postgres-vol
+  postgres-slave-vol:
+    name: ${COMPOSE_PROJECT_NAME}-postgres-slave-vol
+
+networks:
+  net:
+    name: ${COMPOSE_PROJECT_NAME}-net
+    driver: bridge
